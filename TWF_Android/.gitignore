@@ -1,9 +1,9 @@
 ### Eclipse & Android - .gitignore file ####
 
 # Directories #
-/build/
+../build/
 ../bin/
-target/
+../target/
  
 # OS Files #
 .DS_Store
