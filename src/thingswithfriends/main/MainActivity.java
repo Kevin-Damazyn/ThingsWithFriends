@@ -12,11 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+	
+	
 	/** Called when the activity is first created. */
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class MainActivity extends Activity {
 						fld.show(getFragmentManager(), "Friend List Channel");
 					}
 				});
-
+		
 		// make sure a file called "userProfile has been created
 		if (!userProfileExists()) {
 			UserProfile templateProfile = new UserProfile();
@@ -41,12 +43,12 @@ public class MainActivity extends Activity {
 			// if no user has signed up, then prompt with registration
 			if (!tempProf.hasSignedUp()) {
 				registrationPrompt();
+			}else{
+				TextView text =(TextView)findViewById(R.id.textViewUserName);
+				text.setText(tempProf.getWholeName() + " - " + tempProf.getUserName());
 			}
-			// else {
-			// setupMAdapter();
-			// }
 		}
-
+		
 		findViewById(R.id.new_game).setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				startGame();
@@ -63,6 +65,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void startGame() {
+		// TODO update
 		Intent i = new Intent(this, SubmissionActivity.class);
 		startActivity(i);
 	}
@@ -119,7 +122,10 @@ public class MainActivity extends Activity {
 					System.out.println("User's real name: "
 							+ testProfile.getWholeName());
 					System.out.println("Username: " + testProfile.getUserName());
-
+					
+					TextView text =(TextView)findViewById(R.id.textViewUserName);
+					text.setText(testProfile.getWholeName() + " - " + testProfile.getUserName());
+					
 					// TODO check below adapter
 					// from top of MainActivity class...
 					// ...need to put in...
