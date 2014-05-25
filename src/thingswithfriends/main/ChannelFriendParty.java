@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class ChannelFriendParty implements Serializable {
 
 	ArrayList<Friend> party;
+	
+	public ChannelFriendParty() {
+		party = new ArrayList<Friend>();
+	}
 
 	public Friend getFriend(int index) {
 		return party.get(index);
