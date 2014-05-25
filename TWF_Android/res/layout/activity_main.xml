@@ -5,60 +5,39 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="fill_parent"
+        android:id="@+id/textViewUserName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:gravity="center_horizontal"
-        android:text="welcome" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
         android:gravity="center_horizontal"
-        android:text="explain1" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView2"
-        android:gravity="center_horizontal"
-        android:text="explain2" />
+        android:text="Name Username" />
 
     <Button
         android:id="@+id/add_friends"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewExplain"
+        android:layout_marginTop="30dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView3"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginLeft="15dp"
         android:text="Add Friends" />
-
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/start_player"
-        android:layout_alignRight="@+id/start_comp"
-        android:layout_below="@+id/add_friends" >
-
-    </ListView>
 
     <Button
         android:id="@+id/new_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/add_friends"
-        android:layout_alignBottom="@+id/add_friends"
-        android:layout_marginLeft="23dp"
-        android:layout_toRightOf="@+id/add_friends"
+        android:layout_alignTop="@+id/add_friends"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
         android:text="New Game" />
+
+    <ListView
+        android:id="@+id/listViewGames"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_friends" 
+        android:layout_marginTop="15dp">
+    </ListView>
 
 </RelativeLayout>
