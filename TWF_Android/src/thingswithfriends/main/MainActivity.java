@@ -34,6 +34,12 @@ public class MainActivity extends Activity {
                 startGame(false);
             }
         });
+        
+        String[] values = {"a","b","c"};
+        ArrayAdapter<String> valuesArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, values);
+        ListView games = (ListView) findViewById(R.id.listView1);
+        games.setAdapter(valuesArrayAdapter);
+        
     }
 
     private void startGame(boolean startWithHuman) {
