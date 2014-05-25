@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,16 +18,32 @@ import android.widget.ListView;
 
 
 public class MainActivity extends Activity {
+
+    
+	
+	/** Called when the activity is first created. */
+
 	
 	//From campus creatures
 	private ViewPager viewPager;
 	
 	
     /** Called when the activity is first created. */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        findViewById(R.id.add_friends).setOnClickListener(
+                new OnClickListener() {
+            public void onClick(View v) {
+                FriendListDialog fld = new FriendListDialog();
+				fld.show(getFragmentManager(), "Friend List Channel");
+            }
+                });
+
         //make sure a file called "userProfile has been created
         if (!userProfileExists()){
         	UserProfile templateProfile = new UserProfile();
@@ -45,26 +62,23 @@ public class MainActivity extends Activity {
 //        	}
         }
         	
-        findViewById(R.id.start_player).setOnClickListener(
-                new OnClickListener() {
-            public void onClick(View v) {
-                startGame();
-            }
-        });
+ 
 
-        findViewById(R.id.start_comp).setOnClickListener(
+        findViewById(R.id.new_game).setOnClickListener(
                 new OnClickListener() {
             public void onClick(View v) {
                 startGame();
             }
         });
         
-        String[] values = {"a","b","c"};
-        ArrayAdapter<String> valuesArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, values);
-        ListView games = (ListView) findViewById(R.id.listView1);
-        games.setAdapter(valuesArrayAdapter);
+        //TODO get the games from the stored games
+        String[] games = {"Game1","Game2","Game3"};
+        ArrayAdapter<String> valuesArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, games);
+        ListView gameListView = (ListView) findViewById(R.id.listView1);
+        gameListView.setAdapter(valuesArrayAdapter);
         
     }
+
 
     private void startGame() {
         Intent i = new Intent(this, SubmissionActivity.class);
@@ -133,6 +147,7 @@ public class MainActivity extends Activity {
     		}
     	});
     	dialog.show();
+
     }
     
     
