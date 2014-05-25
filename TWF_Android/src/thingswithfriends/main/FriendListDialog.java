@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.app.DialogFragment;
 
 public class FriendListDialog extends DialogFragment {
+	
+	private ArrayList selectedPeople = null;
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -25,7 +27,7 @@ public class FriendListDialog extends DialogFragment {
 
 		// end testing
 
-		final ArrayList mSelectedItems = new ArrayList(); // List for people selected
+		selectedPeople = new ArrayList(); // List of people selected
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		// Set the dialog title
 		builder.setTitle(R.string.channelPeopleList);
@@ -40,11 +42,11 @@ public class FriendListDialog extends DialogFragment {
 						if (isChecked) {
 							// If the user checked the item, add it to the
 							// selected items
-							mSelectedItems.add(which);
-						} else if (mSelectedItems.contains(which)) {
+							selectedPeople.add(which);
+						} else if (selectedPeople.contains(which)) {
 							// Else, if the item is already in the array, remove
 							// it
-							mSelectedItems.remove(Integer.valueOf(which));
+							selectedPeople.remove(Integer.valueOf(which));
 						}
 					}
 				})
@@ -74,5 +76,9 @@ public class FriendListDialog extends DialogFragment {
 
 		return builder.create();
 
+	}
+	
+	public ArrayList getSelectedPeople() {
+		return selectedPeople;
 	}
 }
