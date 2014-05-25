@@ -3,5 +3,6 @@
 
     <string name="app_name">Things With Friends</string>
     <string name="hello_world">Hello world!</string>
+    <string name="send">Send</string>
 
 </resources>
