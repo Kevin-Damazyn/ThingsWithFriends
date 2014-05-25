@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/button1"
-        android:layout_toLeftOf="@+id/button1"
+        android:layout_alignTop="@+id/buttonSend"
+        android:layout_toLeftOf="@+id/buttonSend"
         android:ems="10" />
 
     <TextView
