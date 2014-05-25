@@ -15,26 +15,27 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <LinearLayout
-        android:id="@+id/answerLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/whoView"
+        android:layout_above="@+id/buttonGuess"
         android:layout_below="@+id/questionAnswer"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:weightSum="2" >
 
         <ListView
             android:id="@+id/answerView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" >
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </ListView>
+
+        <ListView
+            android:id="@+id/whoView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
         </ListView>
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/whoView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonGuess">
-    </ListView>
 
     <Button
         android:id="@+id/buttonGuess"
