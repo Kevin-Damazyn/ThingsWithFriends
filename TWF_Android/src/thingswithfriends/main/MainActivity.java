@@ -66,50 +66,49 @@ public class MainActivity extends Activity {
     }
     
     //creates an alert box to register for a profile
-//    public void registrationPrompt(){
-//    	//custom dialog
-//    	final Dialog dialog = new Dialog(this);
-//    	dialog.setContentView(R.layout.register);
-//    	dialog.setTitle("Register For Things With Friends");
-//    	// Need 3 texts (firstName, lastName, userName)
-//    	final EditText text1 = (EditText) dialog.findViewById(R.id.editText1);
-//    	final EditText text2 = (EditText) dialog.findViewById(R.id.editText2);
-//    	final EditText text3 = (EditText) dialog.findViewById(R.id.editText3);
-//    	Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-//    	
-//    	//if button is clicked, close the custom dialog
-//    	dialogButton.setOnClickListener(new OnClickListener() {
-//    		//@Override
-//    		public void onClick(View v) {
-//    			String firstName = text1.getText().toString();
-//    			String lastName = text2.getText().toString();
-//    			String userName = text3.getText().toString();
-//    			if (firstName.length() == 0 | lastName.length() == 0 | userName.length() == 0) {
-//    				return;
-//    			}
-//    			else {
-//    				UserProfile newProfile = new UserProfile();
-//    				newProfile.setInitialProfile(firstName, lastName, userName);
-//    				//TODO add friends for testing purposes later
-//    				
-//    				newProfile.saveProfile(v.getContext());
-//    				UserProfile testProfile = new UserProfile();
-//    				testProfile = testProfile.loadProfile(v.getContext());
-//    				System.out.println("User's real name: " + testProfile.getWholeName());
-//    				System.out.println("Username: " + testProfile.getUserName());
-//    				
-//    				//TODO check below adapter
-//    				//from top of MainActivity class...
-//    				// ...need to put in...
-//    				//private MainPagerAdapter mAdapter;
-//    				
-//    				//setupMAdapter(); 
-//    				dialog.dismiss();
-//    			}
-//    		}
-//    	});
-//    	dialog.show();
-//    }
+    public void registrationPrompt(){
+    	//custom dialog
+    	final Dialog dialog = new Dialog(this);
+    	dialog.setContentView(R.layout.register);
+    	dialog.setTitle("Register For Things With Friends");
+    	// Need 3 texts (firstName, lastName, userName)
+    	final EditText name = (EditText) dialog.findViewById(R.id.editTextName);
+    	final EditText userName = (EditText) dialog.findViewById(R.id.editTextUserName);
+    	Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+    	
+    	//if button is clicked, close the custom dialog
+    	dialogButton.setOnClickListener(new OnClickListener() {
+    		//@Override
+    		public void onClick(View v) {
+    			String inputName = name.getText().toString();
+    			String inputUserName = userName.getText().toString();
+    			if (inputName.length() == 0 | inputUserName.length() == 0) {
+    				return;
+    			}
+    			else {
+    				UserProfile newProfile = new UserProfile();
+    				newProfile.setInitialProfile(inputName, inputUserName);
+    				
+    				//TODO add friends for testing purposes later
+    				
+    				newProfile.saveProfile(v.getContext());
+    				UserProfile testProfile = new UserProfile();
+    				testProfile = testProfile.loadProfile(v.getContext());
+    				System.out.println("User's real name: " + testProfile.getWholeName());
+    				System.out.println("Username: " + testProfile.getUserName());
+    				
+    				//TODO check below adapter
+    				//from top of MainActivity class...
+    				// ...need to put in...
+    				//private MainPagerAdapter mAdapter;
+    				
+    				//setupMAdapter(); 
+    				dialog.dismiss();
+    			}
+    		}
+    	});
+    	dialog.show();
+    }
     
     
     

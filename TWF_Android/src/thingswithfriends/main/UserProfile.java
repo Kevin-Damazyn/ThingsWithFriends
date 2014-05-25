@@ -9,10 +9,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
-import java.util.ArrayList;
 import java.util.*;
+
 import android.content.Context;
 import android.text.format.Time;
+import android.widget.EditText;
 
 /**
  * 
@@ -27,8 +28,7 @@ public class UserProfile {
 	
 	private String fileName;
 	private String userName;
-	private String firstName;
-	private String lastName;
+	private String realName;
 	private Boolean hasSignedUp;
 	private Boolean isCurrentlyInAGame;
 	
@@ -53,8 +53,7 @@ public class UserProfile {
 		UserProfile tempProfile = new UserProfile();
 		tempProfile = tempProfile.loadProfile(context);
 		fileName = tempProfile.getFileName();
-		firstName = tempProfile.getFirstName();
-		lastName = tempProfile.getLastName();
+		realName = tempProfile.getWholeName();
 		userName = tempProfile.getUserName();
 		hasSignedUp = tempProfile.hasSignedUp();
 		isCurrentlyInAGame = tempProfile.userCurrentlyInAGame();
@@ -105,8 +104,7 @@ public class UserProfile {
 		FileOutputStream fos;
 		ObjectOutputStream os;
 		try {
-			System.out.println("gere A");
-			System.out.println("firstnameA = " + getFirstName() );
+			System.out.println("Here Save Profile");
 			fos = context.openFileOutput("userProfile", Context.MODE_PRIVATE);
 			os = new ObjectOutputStream(fos);
 			os.writeObject(this);
@@ -145,28 +143,19 @@ public class UserProfile {
 		return fileName;
 	}
 	
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-	
 	public String getWholeName() {
-		return firstName + " " + lastName;
+		return realName;
 	}
 	
 	public String getUserName() {
 		return userName;
 	}
 	
-	public void setInitialProfile(String first, String last, String user) {
+	public void setInitialProfile(String userRealName, String user) {
 		if (hasSignedUp) {
 			return;
 		}
-		firstName = first;
-		lastName = last;
+		realName = userRealName;
 		userName = user;
 		hasSignedUp = true;
 	}
