@@ -6,15 +6,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
 	ListView listView;
+	Button gameButton;
 
 	public void OnCreate(Bundle SavedInstanceState) {
 		super.onCreate(SavedInstanceState);
 		setContentView(R.layout.activity_main);
+		this.gameButton = (Button)this.findViewById(R.id.button_newgame);
 
 		// get listview object
 		listView = (ListView) findViewById(R.id.gameList);
