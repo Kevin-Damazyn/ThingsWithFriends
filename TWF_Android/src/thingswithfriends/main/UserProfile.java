@@ -31,6 +31,10 @@ public class UserProfile implements Serializable {
 	private Boolean hasSignedUp;
 	private Boolean isCurrentlyInAGame;
 	
+	private ArrayList<Friend> friendsList;
+	private ChannelFriendParty party;
+	
+	
 	// TODO make a Games class and Friends class
 	//private ArrayList<Game> gamesList;
 	//private ArrayList<Friends> friendsList;
@@ -41,9 +45,12 @@ public class UserProfile implements Serializable {
 		userName = "userName";
 		hasSignedUp = false;
 		//gamesList = new ArrayList(); 
-		//friendsList = new ArrayList();
 		isCurrentlyInAGame = false;
 		//currentUserGame = null;
+		party = new ChannelFriendParty();
+		friendsList = new ArrayList();
+		
+		
 	}
 	
 	//loads the saved user profile in any view and instantiates a new UserProfile objects
@@ -56,6 +63,7 @@ public class UserProfile implements Serializable {
 		userName = tempProfile.getUserName();
 		hasSignedUp = tempProfile.hasSignedUp();
 		isCurrentlyInAGame = tempProfile.userCurrentlyInAGame();
+		party = tempProfile.getParty();
 	}
 	
 	public boolean hasSignedUp(){
@@ -150,6 +158,10 @@ public class UserProfile implements Serializable {
 		return userName;
 	}
 	
+	public ChannelFriendParty getParty() {
+		return party;
+	}
+	
 	public void setInitialProfile(String userRealName, String user) {
 		if (hasSignedUp) {
 			return;
@@ -160,13 +172,13 @@ public class UserProfile implements Serializable {
 	}
 	
 // TODO change BELOW functions to modify into friendsList	
-//	public void addFriend(Friend friend) {
-//		party.addPartyMember(creature);
-//	}
-//	
-//	public void removeCreature(BattleCreature creature) {
-//		party.removePartyMember(creature);
-//	}
+	public void addFriend(Friend friend) {
+		party.addFriend(friend);
+	}
+	
+	public void removeFriend(Friend friend) {
+		party.removeFriend(friend);
+	}
 	
 // Modify to get current games if it is not null
 //		public Battle getCurrentUserBattle() {
