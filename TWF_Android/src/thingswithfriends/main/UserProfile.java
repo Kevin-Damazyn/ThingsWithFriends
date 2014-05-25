@@ -10,7 +10,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
 import java.util.*;
-
 import android.content.Context;
 import android.text.format.Time;
 import android.widget.EditText;
@@ -24,7 +23,7 @@ import android.widget.EditText;
  *
  *
  */
-public class UserProfile {
+public class UserProfile implements Serializable {
 	
 	private String fileName;
 	private String userName;
@@ -65,30 +64,30 @@ public class UserProfile {
 	
 	public UserProfile loadProfile(Context context) {
 		try {
-			FileInputStream fis;
-			fis = context.openFileInput("userProfile");
-			System.out.println(context);
-			try {
-				ObjectInputStream is = new ObjectInputStream(fis);
-				UserProfile tempProf = (UserProfile) is.readObject();
-				is.close();
-				return tempProf;
-			} catch (StreamCorruptedException e) {
-				System.out.println("Here 1");
-				e.printStackTrace();
-				return this;
-			} catch (IOException e) {
-				System.out.println("here 2");
-				e.printStackTrace();
-				return this;
-			} catch (ClassNotFoundException e) {
-				System.out.println("here 3");
-				e.printStackTrace();
-				return this;
-			}
+				FileInputStream fis;
+				fis = context.openFileInput("userProfile");
+				System.out.println(context);
+				try {
+						ObjectInputStream is = new ObjectInputStream(fis);
+						UserProfile tempProf = (UserProfile) is.readObject();
+						is.close();
+						return tempProf;
+				} catch (StreamCorruptedException e) {
+						System.out.println("Here 1");
+						e.printStackTrace();
+						return this;
+				} catch (IOException e) {
+						System.out.println("here 2");
+						e.printStackTrace();
+						return this;
+				} catch (ClassNotFoundException e) {
+						System.out.println("here 3");
+						e.printStackTrace();
+						return this;
+				}
 		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-			return this;
+				e1.printStackTrace();
+				return this;
 		}
 	}
 	
@@ -104,19 +103,19 @@ public class UserProfile {
 		FileOutputStream fos;
 		ObjectOutputStream os;
 		try {
-			System.out.println("Here Save Profile");
-			fos = context.openFileOutput("userProfile", Context.MODE_PRIVATE);
-			os = new ObjectOutputStream(fos);
-			os.writeObject(this);
-			os.close();
+				System.out.println("Here Save Profile");
+				fos = context.openFileOutput("userProfile", Context.MODE_PRIVATE);
+				os = new ObjectOutputStream(fos);
+				os.writeObject(this);
+				os.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("gere B");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				System.out.println("gere B");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("gere C");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				System.out.println("gere C");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 		}
 	}
 	
@@ -131,7 +130,7 @@ public class UserProfile {
 				UserProfile tempProf = new UserProfile();
 				tempProf = tempProf.loadProfile(context);
 				if(tempProf!=null) {
-					System.out.println("as user has signed up = " + tempProf.hasSignedUp());
+					System.out.println("a user has signed up = " + tempProf.hasSignedUp());
 				}
 				return true;
 			}
