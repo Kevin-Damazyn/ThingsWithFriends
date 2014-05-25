@@ -4,5 +4,8 @@
     <string name="app_name">Things With Friends</string>
     <string name="hello_world">Hello world!</string>
     <string name="send">Send</string>
+    <string name="channelPeopleList">Pick Your Friends To Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>    
 
 </resources>
