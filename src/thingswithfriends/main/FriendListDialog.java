@@ -10,27 +10,42 @@ import android.app.DialogFragment;
 
 public class FriendListDialog extends DialogFragment {
 
+	private ChannelFriendParty party = null;
+
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		ArrayList<String> channelUsers = new ArrayList<String>(); // List of people in the channel
+		ArrayList<Friend> channelUsers = new ArrayList<Friend>(); // List of
+																	// people in
+																	// the
+																	// channel
 
 		// just to load the array with some names
-		channelUsers.add("Charles35");
-		channelUsers.add("Kevin157");
-		channelUsers.add("mtabor150");
-		channelUsers.add("PJ-WhatTheHey");
+		Friend charles = new Friend("Charles35", "Charles");
+		Friend kevin = new Friend("Kevin157", "Kevin");
+		Friend mark = new Friend("mtabor150", "Mark");
+		Friend pj = new Friend("PJ-WhatTheHey", "PJ");
+		channelUsers.add(charles);
+		channelUsers.add(kevin);
+		channelUsers.add(mark);
+		channelUsers.add(pj);
 
-		final CharSequence[] channelPeople = channelUsers
+		ArrayList<String> realNames = new ArrayList();
+		for (Friend f : channelUsers) {
+			realNames.add(f.getRealName());
+		}
+
+		final CharSequence[] channelPeople = realNames
 				.toArray(new CharSequence[channelUsers.size()]);
-
 		// end testing
 
-		final ArrayList mSelectedItems = new ArrayList(); // List for people selected
+		party = new ChannelFriendParty(); // List of people selected
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		// Set the dialog title
 		builder.setTitle(R.string.channelPeopleList);
-		// Specify the list array, the items to be selected by default (null for none),
-		// and the listener through which to receive callbacks when items are selected
+		// Specify the list array, the items to be selected by default (null for
+		// none),
+		// and the listener through which to receive callbacks when items are
+		// selected
 		builder.setMultiChoiceItems(channelPeople, null,
 				new DialogInterface.OnMultiChoiceClickListener() {
 					@SuppressWarnings("unchecked")
@@ -40,11 +55,12 @@ public class FriendListDialog extends DialogFragment {
 						if (isChecked) {
 							// If the user checked the item, add it to the
 							// selected items
-							mSelectedItems.add(which);
-						} else if (mSelectedItems.contains(which)) {
+
+							party.addFriend(party.getFriend(which));
+						} else if (party.contains(which)) {
 							// Else, if the item is already in the array, remove
 							// it
-							mSelectedItems.remove(Integer.valueOf(which));
+							party.removeFriend(party.getFriend(which));
 						}
 					}
 				})
