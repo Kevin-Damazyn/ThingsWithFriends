@@ -2,10 +2,12 @@ package thingswithfriends.main;
 
 
 import java.io.File;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -15,11 +17,34 @@ import android.widget.ListView;
 
 
 public class MainActivity extends Activity {
+	
+	//From campus creatures
+	private ViewPager viewPager;
+	
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //make sure a file called "userProfile has been created
+        if (!userProfileExists()){
+        	UserProfile templateProfile = new UserProfile();
+        	templateProfile.saveProfile(this);
+        	registrationPrompt();
+        }
+        else {
+        	UserProfile tempProf = new UserProfile();
+        	tempProf = tempProf.loadProfile(this);
+        	//if no user has signed up, then prompt with registration
+        	if (!tempProf.hasSignedUp()){
+        		registrationPrompt();
+        	}
+//        	else {
+//        		setupMAdapter();
+//        	}
+        }
+        	
         findViewById(R.id.start_player).setOnClickListener(
                 new OnClickListener() {
             public void onClick(View v) {
